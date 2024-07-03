@@ -1,11 +1,11 @@
 package jpabook.springbootjpa.domain;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import jpabook.springbootjpa.domain.common.BaseEntity;
 import lombok.*;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Builder
@@ -22,5 +22,8 @@ public class Store extends BaseEntity {
     private String address;
 
     private String score;
+
+    @OneToMany(mappedBy="store", cascade=CascadeType.ALL)
+    private List<Review> reviewList = new ArrayList<>();
 
 }
