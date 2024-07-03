@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequiredArgsConstructor //final 또는 @NonNull로 선언된 필드 인수로 가지는 생성자 생성
-@RequestMapping
+@RequestMapping("/members")
 public class MemberRestController {
     private final MemberCommandService memberCommandService;
 
