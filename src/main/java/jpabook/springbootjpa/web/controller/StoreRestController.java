@@ -3,6 +3,7 @@ package jpabook.springbootjpa.web.controller;
 import jakarta.validation.Valid;
 import jpabook.springbootjpa.apiPayload.ApiResponse;
 import jpabook.springbootjpa.converter.StoreConverter;
+import jpabook.springbootjpa.domain.Mission;
 import jpabook.springbootjpa.domain.Review;
 import jpabook.springbootjpa.service.StoreService.StoreCommandService;
 import jpabook.springbootjpa.web.dto.StoreRequestDTO;
@@ -24,5 +25,12 @@ public class StoreRestController {
     {
         Review review =storeCommandService.createReview(memberId, storeId, request);
         return ApiResponse.onSuccess(StoreConverter.toCreateReviewResultDTO(review));
+    }
+
+    @PostMapping("/{storeId}/mission")
+    public ApiResponse<StoreResponseDTO.CreateMissionResultDTO> join(@RequestBody @Valid StoreRequestDTO.MissionDTO request,
+                                                                     @PathVariable(name="storeId") Long storeId){
+        Mission mission = storeCommandService.createMission(storeId, request);
+        return ApiResponse.onSuccess(StoreConverter.createMissionResultDTO(mission));
     }
 }
