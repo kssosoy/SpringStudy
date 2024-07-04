@@ -3,6 +3,7 @@ package jpabook.springbootjpa.web.dto;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
+import jpabook.springbootjpa.domain.enums.MissionStatus;
 import jpabook.springbootjpa.validation.annotation.ExistsCategories;
 import lombok.Getter;
 
@@ -28,5 +29,10 @@ public class MemberRequestDTO {
         @ExistsCategories
         List<Long> preferCategory;
 
+    }
+    @Getter
+    public static class MemberMissionDto {
+        @NotNull
+        Integer status;
     }
 }
