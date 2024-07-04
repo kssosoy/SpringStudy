@@ -32,6 +32,13 @@ public class Mission extends BaseEntity {
     @OneToMany(mappedBy="mission", cascade=CascadeType.ALL)
     private List<MemberMission> memberMissions= new ArrayList<>();
 
+    public void setStore(Store store){
+        if(this.reward != null)
+            store.getMissionList().remove(this);
+        this.store = store;
+        store.getMissionList().add(this);
+    }
+
 
 
 

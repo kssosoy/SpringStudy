@@ -3,6 +3,9 @@ package jpabook.springbootjpa.web.dto;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
+import lombok.NonNull;
+
+import java.time.LocalDate;
 
 public class StoreRequestDTO {
     @Getter
@@ -14,4 +17,14 @@ public class StoreRequestDTO {
         @NotBlank
         String body;
     }
+    @Getter
+    public static class MissionDTO{
+        @NotNull
+        Integer reward;
+        @NotNull
+        LocalDate deadline;
+        @NotBlank
+        String missionSpec;
+    }
+
 }
