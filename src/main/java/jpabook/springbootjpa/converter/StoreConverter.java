@@ -4,8 +4,11 @@ import jpabook.springbootjpa.domain.Mission;
 import jpabook.springbootjpa.domain.Review;
 import jpabook.springbootjpa.web.dto.StoreRequestDTO;
 import jpabook.springbootjpa.web.dto.StoreResponseDTO;
+import org.springframework.data.domain.Page;
 
 import java.time.LocalDateTime;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class StoreConverter {
     public static StoreResponseDTO.CreateReviewResultDTO toCreateReviewResultDTO(Review review){
@@ -33,6 +36,26 @@ public class StoreConverter {
                 .reward(request.getReward())
                 .deadline(request.getDeadline())
                 .missionSpec(request.getMissionSpec())
+                .build();
+    }
+    public static StoreResponseDTO.ReviewPreviewDTO reviewPreviewDTO(Review review){
+        return StoreResponseDTO.ReviewPreviewDTO.builder()
+                .ownerNickname(review.getMember().getName())
+                .score(review.getScore())
+                .createdAt(review.getCreatedAt().toLocalDate())
+                .body(review.getBody())
+                .build();
+    }
+    public static StoreResponseDTO.ReviewPreviewListDTO reviewPreviewListDTO(Page<Review> reviewList){
+        List<StoreResponseDTO.ReviewPreviewDTO> reviewPreviewDTOList = reviewList.stream()
+                .map(StoreConverter:: reviewPreviewDTO).collect(Collectors.toList());
+        return StoreResponseDTO.ReviewPreviewListDTO.builder()
+                .isLast(reviewList.isLast())
+                .isFirst(reviewList.isFirst())
+                .totalPage(reviewList.getTotalPages())
+                .totalElements(reviewList.getTotalElements())
+                .listSize(reviewPreviewDTOList.size())
+                .reviewList(reviewPreviewDTOList)
                 .build();
     }
 }
