@@ -2,6 +2,7 @@ package jpabook.springbootjpa.converter;
 
 import jpabook.springbootjpa.domain.Mission;
 import jpabook.springbootjpa.domain.Review;
+import jpabook.springbootjpa.domain.Store;
 import jpabook.springbootjpa.web.dto.StoreRequestDTO;
 import jpabook.springbootjpa.web.dto.StoreResponseDTO;
 import org.springframework.data.domain.Page;
@@ -56,6 +57,26 @@ public class StoreConverter {
                 .totalElements(reviewList.getTotalElements())
                 .listSize(reviewPreviewDTOList.size())
                 .reviewList(reviewPreviewDTOList)
+                .build();
+    }
+
+    public static StoreResponseDTO.MissionDTO missionDTO(Mission mission) {
+        return StoreResponseDTO.MissionDTO.builder()
+                .missionSpec(mission.getMissionSpec())
+                .deadline(mission.getDeadline())
+                .reward(mission.getReward())
+                .build();
+    }
+    public static StoreResponseDTO.MissionListDTO missionListDTO(Page<Mission> missionList){
+        List<StoreResponseDTO.MissionDTO> missionDTOList = missionList.stream()
+                .map(StoreConverter::missionDTO).collect(Collectors.toList());
+        return StoreResponseDTO.MissionListDTO.builder()
+                .isLast(missionList.isLast())
+                .isFirst(missionList.isFirst())
+                .totalPage(missionList.getTotalPages())
+                .totalElements(missionList.getTotalElements())
+                .listSize(missionDTOList.size())
+                .missionList(missionDTOList)
                 .build();
     }
 }
