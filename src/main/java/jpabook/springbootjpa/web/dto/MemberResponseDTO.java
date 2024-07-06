@@ -32,20 +32,18 @@ public class MemberResponseDTO {
     @Getter
     @NoArgsConstructor
     @AllArgsConstructor
-<<<<<<< HEAD
+
     public static class IngMissionDTO {
         String missionSpec;
         LocalDate deadline;
         Integer reward;
     }
 
+
     @Builder
     @Getter
     @NoArgsConstructor
     @AllArgsConstructor
-    public static class IngMissionListDTO{
-        List<IngMissionDTO> missionList;
-}
     public static class ReviewPreViewListDTO{
         List<ReviewPreViewDTO> reviewList;
 
