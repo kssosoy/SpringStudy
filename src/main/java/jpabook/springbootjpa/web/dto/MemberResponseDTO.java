@@ -32,14 +32,28 @@ public class MemberResponseDTO {
     @Getter
     @NoArgsConstructor
     @AllArgsConstructor
+
+    public static class IngMissionDTO {
+        String missionSpec;
+        LocalDate deadline;
+        Integer reward;
+    }
+
+
+    @Builder
+    @Getter
+    @NoArgsConstructor
+    @AllArgsConstructor
     public static class ReviewPreViewListDTO{
         List<ReviewPreViewDTO> reviewList;
+
         Integer listSize;
         Integer totalPage;
         Long totalElements;
         Boolean isFirst;
         Boolean isLast;
     }
+
 
     @Builder
     @Getter
@@ -51,4 +65,7 @@ public class MemberResponseDTO {
         String body;
         LocalDate createdAt;
     }
+
 }
+
+
