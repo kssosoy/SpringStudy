@@ -33,6 +33,6 @@ public class MemberRequestDTO {
     @Getter
     public static class MemberMissionDto {
         @NotNull
-        Integer status;
+        MissionStatus status;
     }
 }
