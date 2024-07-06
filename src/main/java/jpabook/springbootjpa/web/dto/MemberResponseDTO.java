@@ -1,5 +1,6 @@
 package jpabook.springbootjpa.web.dto;
 
+import jpabook.springbootjpa.domain.enums.MissionStatus;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -37,6 +38,21 @@ public class MemberResponseDTO {
         String missionSpec;
         LocalDate deadline;
         Integer reward;
+        MissionStatus status;
+    }
+
+    @Builder
+    @Getter
+    @NoArgsConstructor
+    @AllArgsConstructor
+
+    public static class IngMissionListDTO{
+        List<IngMissionDTO> missionList;
+        Integer listSize;
+        Integer totalPage;
+        Long totalElements;
+        Boolean isFirst;
+        Boolean isLast;
     }
 
 

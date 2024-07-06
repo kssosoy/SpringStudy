@@ -14,19 +14,25 @@ public class MemberMissionConverter {
                 .createdAt(LocalDateTime.now())
                 .build();
     }
-    public static MemberMission toMembermission (MemberRequestDTO.MemberMissionDto request){
-        MissionStatus missionStatus = null;
-        switch(request.getStatus()){
+    public static MemberMission toMembermission(MemberRequestDTO.MemberMissionDto request) {
+        MissionStatus missionStatus;
+        switch (request.getStatus()) {
             case 1:
                 missionStatus = MissionStatus.SUCCESS;
                 break;
             case 2:
                 missionStatus = MissionStatus.ING;
+                break;
             case 3:
-                missionStatus =MissionStatus.NOTYET;
+                missionStatus = MissionStatus.NOTYET;
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid status value: " + request.getStatus());
         }
+
         return MemberMission.builder()
-                .status(missionStatus)
+                .status(missionStatus) // 설정된 missionStatus 사용
                 .build();
     }
+
 }
